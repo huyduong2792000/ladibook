@@ -20,6 +20,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import liquibase.integration.spring.SpringLiquibase;
+
 @Configuration
 @PropertySource(value = "classpath:database.properties")
 @EnableTransactionManagement
@@ -95,13 +97,13 @@ public class SpringConfiguration {
 		return commonMultipartResolver;
 	}
 
-//	@Bean
-//	public SpringLiquibase liquibase() {
-//		SpringLiquibase liquibase = new SpringLiquibase();
-//		liquibase.setChangeLog("classpath:db-diff-changelog.xml");
-//		liquibase.setDataSource(dataSource());
-//		return liquibase;
-//	}
+	@Bean
+	public SpringLiquibase liquibase() {
+		SpringLiquibase liquibase = new SpringLiquibase();
+		liquibase.setChangeLog("classpath:db-diff-changelog.xml");
+		liquibase.setDataSource(dataSource());
+		return liquibase;
+	}
 
 //	@Bean
 //	public JdbcTemplate jdbcTemplate() {

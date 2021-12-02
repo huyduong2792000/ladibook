@@ -27,6 +27,9 @@ public class ProductType extends Base {
 	@Column(name = "product_type_name", nullable = false)
 	private String productTypeName;
 
+	@Column(name = "product_type_no", nullable = false, unique = true)
+	private String productTypeNo = "product"; // voucher, freeship, product, combo
+
 	@Column(name = "description")
 	private String description;
 

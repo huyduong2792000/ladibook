@@ -1,6 +1,7 @@
 package com.huydq.ladibook.entity;
 
 
+import java.sql.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -8,8 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,19 +20,22 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "product")
-public class Product extends Base {
+@Table(name = "price")
+public class Price extends Base {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "product_id", nullable = false, unique = true)
-	private long productId;
+	@Column(name = "price_id", nullable = false, unique = true)
+	private long priceId;
 
-	@Column(name = "product_name")
-	private String productName;
+	@Column(name = "price_name")
+	private String priceName;
 
-	@Column(name = "quantity")
-	private float quantity;
+	@Column(name = "is_default")
+	private boolean isDefault;
+
+	@Column(name = "price_unit")
+	private String priceUnit;
 
 	@Column(name = "description")
 	private String description;
@@ -41,15 +43,13 @@ public class Product extends Base {
 	@Column(name = "image")
 	private String image;
 
-	@ManyToOne
-	@JoinColumn(name = "category_id")
-	private Category category;
+	@Column(name = "start_time")
+	private Date startTime;
 
-	@ManyToOne
-	@JoinColumn(name = "product_type_id")
-	private ProductType productType;
+	@Column(name = "end_time")
+	private Date endTime;
 
-	@OneToMany(mappedBy = "product")
+	@OneToMany(mappedBy = "price")
 	Set<ProductPrice> productPrices;
 
 }

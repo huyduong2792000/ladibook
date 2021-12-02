@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "order_user")
+@Table(name = "order")
 public class Order extends Base {
 
 	@Id
@@ -41,9 +41,12 @@ public class Order extends Base {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
-	private User buyer;
+	private User employee;
 
 	@OneToMany(mappedBy = "order")
-	private List<Item> items;
+	private List<OrderProduct> products;
+
+	@OneToMany(mappedBy = "order")
+	private List<OrderCustomer> customers;
 
 }

@@ -34,6 +34,6 @@ public class ProductType extends Base {
 	private String description;
 
 	@Column(name = "is_default")
-	private boolean idDefault = false;
+	private boolean isDefault = false;
 
 }

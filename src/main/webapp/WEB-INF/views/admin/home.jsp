@@ -124,24 +124,24 @@
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach items="${orders}" var="order">
-														<tr>
-															<td><a href="#">No. ${order.orderId}</a></td>
-															<td>${order.userDTO.email.split("@")[0]}</td>
-															<td>$${order.priceTotal}0</td>
-															<td>${order.buyDate}</td>
-															<c:if test="${order.status eq 'PENDING'}">
-																<td><a
-																	href="order-updateHome?orderId=${order.orderId}"><span
-																		class="label label-warning">PENDING</span></a></td>
-															</c:if>
-															<c:if test="${order.status eq 'SUCCESS'}">
-																<td><span class="label label-success">SUCCESS</span></td>
-															</c:if>
-															<td><a href="order-details?orderId=${order.orderId}"
-																style="text-decoration: underline;">Details</a></td>
-														</tr>
-													</c:forEach>
+<%-- 													<c:forEach items="${orders}" var="order"> --%>
+<!-- 														<tr> -->
+<%-- 															<td><a href="#">No. ${order.orderId}</a></td> --%>
+<%-- 															<td>${order.userDTO.email.split("@")[0]}</td> --%>
+<!-- 															<td>$${order.priceTotal}0</td> -->
+<%-- 															<td>${order.buyDate}</td> --%>
+<%-- 															<c:if test="${order.status eq 'PENDING'}"> --%>
+<!-- 																<td><a -->
+<%-- 																	href="order-updateHome?orderId=${order.orderId}"><span --%>
+<!-- 																		class="label label-warning">PENDING</span></a></td> -->
+<%-- 															</c:if> --%>
+<%-- 															<c:if test="${order.status eq 'SUCCESS'}"> --%>
+<!-- 																<td><span class="label label-success">SUCCESS</span></td> -->
+<%-- 															</c:if> --%>
+<%-- 															<td><a href="order-details?orderId=${order.orderId}" --%>
+<!-- 																style="text-decoration: underline;">Details</a></td> -->
+<!-- 														</tr> -->
+<%-- 													</c:forEach> --%>
 												</tbody>
 											</table>
 										</div>

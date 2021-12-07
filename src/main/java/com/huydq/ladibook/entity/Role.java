@@ -1,7 +1,5 @@
 package com.huydq.ladibook.entity;
 
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -18,38 +16,41 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Getter
+@Setter
 @Table(name = "role")
 public class Role extends Base {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "role_id", nullable = false, unique = true)
-	private long roleId;
+	public long roleId;
 
 	@Column(name = "role_name", nullable = false)
-	private String roleName;
+	public String roleName;
 
-	@OneToMany(mappedBy = "role")
-	private List<User> users;
+	@OneToMany(mappedBy = "role", fetch = FetchType.EAGER)
+	Set<User> users;
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+
+	@ManyToMany(targetEntity = Permission.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "role_permission", joinColumns = { @JoinColumn(name = "role_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "permission_id") })
-	Set<Permission> permissions = new HashSet<>();
+	Set<Permission> permissions;
 
 	public Set<Permission> getPermissions() {
-		return permissions;
+		return this.permissions;
 	}
 
 	public void addPermission(Permission permission) {
-		permissions.add(permission);
+		this.permissions.add(permission);
 		permission.getRoles().add(this);
 	}
 
@@ -57,4 +58,14 @@ public class Role extends Base {
 		this.permissions.remove(permission);
 		permission.getRoles().remove(this);
 	}
+
+	public Role(String roleName, Set<User> users, Set<Permission> permissions) {
+		super();
+		this.roleName = roleName;
+		this.users = users;
+		this.permissions = permissions;
+	}
+
+
+
 }

@@ -1,71 +1,150 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="resource/common/authen.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Tivo is a HTML landing page template built with Bootstrap to help you crate engaging presentations for SaaS apps and convert visitors into users.">
+    <meta name="author" content="Inovatik">
+
+    <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
+	<meta property="og:site_name" content="" /> <!-- website name -->
+	<meta property="og:site" content="" /> <!-- website link -->
+	<meta property="og:title" content=""/> <!-- title shown in the actual shared post -->
+	<meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
+	<meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
+	<meta property="og:url" content="" /> <!-- where do you want your post to link to -->
+	<meta property="og:type" content="article" />
+
+    <!-- Website Title -->
+    <title>Verify - LadiBook</title>
+    
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="resource/client/css/bootstrap.css" rel="stylesheet">
+    <link href="resource/client/css/fontawesome-all.css" rel="stylesheet">
+    <link href="resource/client/css/swiper.css" rel="stylesheet">
+	<link href="resource/client/css/magnific-popup.css" rel="stylesheet">
+	<link href="resource/client/css/styles.css" rel="stylesheet">
+	
+	<!-- Favicon  -->
+    <link rel="icon" href="resource/client/images/favicon.png">
 </head>
-<body style="background-image: url(resource/client/images/bg.jpg);">
-	<!-- Authen form -->
-	<form action="verify" method="post">
-		<div class="auth-form" style="background-color: white;">
-			<div class="auth-form-container">
-				<a href="client/home"><h5 class="auth-form-title"
-						style="text-align: center; padding-top: 20px;">Welcome to
-						FlatShop</h5></a>
-				<hr style="margin-top: -35px;" />
-				<p style="font-size: 18px; text-align: center;">
-					We just sent a confirmation code over to <span
-						style="font-weight: bold;">${sessionScope.emailRegister}</span>
-				</p>
-				<div class="auth-form-form"
-					style="margin-top: 15px; margin-bottom: -13px;">
-					<div class="auth-form-group">
-						<c:if test="${resend != null}">
-							<div style="display: flex; margin-bottom: 2px; color: #0101DF;">
-								<i class="material-icons" style="font-size: 19px;">&#xe88f;</i>
-								<span>Check Your Email.</span>
-							</div>
-						</c:if>
+<body data-spy="scroll" data-target=".fixed-top">
+    
+    <!-- Preloader -->
+	<div class="spinner-wrapper">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <!-- end of preloader -->
+    
 
-						<c:if test="${verifyFail != null}">
-							<div style="display: flex; margin-bottom: 2px; color: red;">
-								<i style="font-size: 18px" class="fa">&#xf071;</i> <span
-									style="margin-left: 2px;">${verifyFail}</span>
-							</div>
-						</c:if>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container">
 
-						<c:if test="${verifySuccess != null}">
-							<div style="display: flex; margin-bottom: 2px; color: #339900;">
-								<i style='font-size: 19px' class='fas'>&#xf058;</i> <span>${verifySuccess}</span>
-								<a href="login" style="margin-left: 10px;"> Login</a>
-							</div>
-						</c:if>
+            <!-- Text Logo - Use this if you don't have a graphic logo -->
+            <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Tivo</a> -->
 
-						<input class="auth-form-input" type="text" name="code"
-							placeholder="Enter code" required="required" />
-					</div>
-				</div>
-				<div style="font-size: 17px; text-align: center;">
-					<span>Did'nt work? <a href="resend-code">Send me another
-							code.</a>
-					</span>
-				</div>
-				<div class="auth-form-controls"
-					style="margin-left: 80px; margin-top: 15px;">
-					<button type="submit" class="btn" style="cursor: pointer;">Confirm</button>
-				</div>
-				<div style="padding-bottom: 20px;"></div>
-			</div>
-		</div>
-	</form>
+            <!-- Image Logo -->
+            <a class="navbar-brand logo-image" href="index.html"><img src="resource/client/images/logo.svg" alt="alternative"></a> 
+            
+            <!-- Mobile Menu Toggle Button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-awesome fas fa-bars"></span>
+                <span class="navbar-toggler-awesome fas fa-times"></span>
+            </button>
+            <!-- end of mobile menu toggle button -->
+
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="index.html#header">HOME <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="index.html#features">FEATURES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="index.html#details">DETAILS</a>
+                    </li>
+
+                    <!-- Dropdown Menu -->          
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle page-scroll" href="index.html#video" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">VIDEO</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="article-details.html"><span class="item-text">ARTICLE DETAILS</span></a>
+                            <div class="dropdown-items-divide-hr"></div>
+                            <a class="dropdown-item" href="terms-conditions.html"><span class="item-text">TERMS CONDITIONS</span></a>
+                            <div class="dropdown-items-divide-hr"></div>
+                            <a class="dropdown-item" href="privacy-policy.html"><span class="item-text">PRIVACY POLICY</span></a>
+                        </div>
+                    </li>
+                    <!-- end of dropdown menu -->
+
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="index.html#pricing">PRICING</a>
+                    </li>
+                </ul>
+                <span class="nav-item">
+                    <a class="btn-outline-sm" href="login">LOG IN</a>
+                </span>
+            </div>
+        </div> <!-- end of container -->
+    </nav> <!-- end of navbar -->
+    <!-- end of navigation -->
+
+
+    <!-- Header -->
+    <header id="header" class="ex-2-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Verify</h1>
+                   <p>We just sent a confirmation code over to <span>${sessionScope.emailRegister}</span></p> 
+                   
+                    <!-- Sign Up Form -->
+                    <div class="form-container">
+                        <form action="verify" method="post">
+                        	<p style="color: #ff3a3a; margin-top: 0px; margin-bottom: 5px;">${error}</p>
+                            <div class="form-group">
+                                <input type="text" class="form-control-input" id="code" name="code" required>
+                                <label class="label-control" for="code">Enter your code here</label>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group checkbox">
+                                <span>Did'nt work? </span><a href="resend-code">Send me another code.</a>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="form-control-submit-button">CONFIRM</button>
+                            </div>
+                            <div class="form-message">
+                                <div id="smsgSubmit" class="h3 text-center hidden"></div>
+                            </div>
+                        </form>
+                    </div> <!-- end of form container -->
+                    <!-- end of sign up form -->
+
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </header> <!-- end of ex-header -->
+    <!-- end of header -->
+
+
+    <!-- Scripts -->
+    <script src="resource/client/js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="resource/client/js/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
+    <script src="resource/client/js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
+    <script src="resource/client/js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+    <script src="resource/client/js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
+    <script src="resource/client/js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
+    <script src="resource/client/js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
+    <script src="resource/client/js/scripts.js"></script> <!-- Custom scripts -->
 </body>
 </html>

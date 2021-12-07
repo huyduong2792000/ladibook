@@ -13,13 +13,15 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Getter
+@Setter
 @Table(name = "permission")
 public class Permission {
 	@Id
@@ -33,10 +35,17 @@ public class Permission {
 	@Column(name = "permission_name", nullable = false)
 	private String permissionName;
 
-	@ManyToMany(mappedBy = "permissions", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(targetEntity = Role.class, mappedBy = "permissions", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	Set<Role> roles;
 
 	public Set<Role> getRoles() {
 		return roles;
 	}
+
+	public Permission(String permissionNo, String permissionName) {
+		super();
+		this.permissionNo = permissionNo;
+		this.permissionName = permissionName;
+	}
+
 }

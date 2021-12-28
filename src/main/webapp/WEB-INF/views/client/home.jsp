@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -368,7 +368,7 @@
 	<div id="details-lightbox-1" class="lightbox-basic zoom-anim-dialog mfp-hide">
         <div class="container">
             <div class="row">
-                <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
+                <button title="Close (Esc)" type="button" class="mfp-close x-button">Ã</button>
                 <div class="col-lg-8">
                     <div class="image-container">
                         <img class="img-fluid" src="../resource/client/images/details-lightbox.png" alt="alternative">
@@ -410,7 +410,7 @@
 	<div id="details-lightbox-2" class="lightbox-basic zoom-anim-dialog mfp-hide">
         <div class="container">
             <div class="row">
-                <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
+                <button title="Close (Esc)" type="button" class="mfp-close x-button">Ã</button>
                 <div class="col-lg-8">
                     <div class="image-container">
                         <img class="img-fluid" src="../resource/client/images/details-lightbox.png" alt="alternative">
@@ -452,7 +452,7 @@
 	<div id="details-lightbox-3" class="lightbox-basic zoom-anim-dialog mfp-hide">
         <div class="container">
             <div class="row">
-                <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
+                <button title="Close (Esc)" type="button" class="mfp-close x-button">Ã</button>
                 <div class="col-lg-8">
                     <div class="image-container">
                         <img class="img-fluid" src="../resource/client/images/details-lightbox.png" alt="alternative">
@@ -868,7 +868,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <p class="p-small">Copyright © 2020 <a href="https://inovatik.com">Template by Inovatik</a></p>
+                    <p class="p-small">Copyright Â© 2020 <a href="https://inovatik.com">Template by Inovatik</a></p>
                 </div> <!-- end of col -->
             </div> <!-- enf of row -->
         </div> <!-- end of container -->

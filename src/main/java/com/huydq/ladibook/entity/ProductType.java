@@ -22,7 +22,7 @@ public class ProductType extends Base {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "product_type_id", nullable = false, unique = true)
-	private long productTypeId;
+	private long id;
 
 	@Column(name = "product_type_name", nullable = false)
 	private String productTypeName;
@@ -36,4 +36,10 @@ public class ProductType extends Base {
 	@Column(name = "is_default")
 	private boolean isDefault = false;
 
+	public ProductType(String productTypeNo, String productTypeName, String description) {
+		super();
+		this.productTypeNo = productTypeNo;
+		this.productTypeName = productTypeName;
+		this.description = description;
+	}
 }

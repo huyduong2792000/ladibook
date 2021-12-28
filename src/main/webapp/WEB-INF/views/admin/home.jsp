@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Dashboard | Klorofil - Free Bootstrap Dashboard Template</title>
+<title>Dashboard | LadiBook</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport"
@@ -60,19 +60,19 @@
 										<div class="metric" style="box-shadow: 0 0 3px;">
 											<span class="icon"><i class="fa fa-shopping-cart"></i></span>
 											<p>
-												<span class="number">1,252</span> <span class="title">Order</span>
+												<span class="number">${viewCount}</span> <span class="title">Lượt xem</span>
 											</p>
 										</div>
 									</a>
 								</div>
 								<div class="col-md-3">
-									<a class="metric-link" href="../admin/product-list"
+									<a class="metric-link" href="../admin/product"
 										style="color: #676A6D;">
 										<div class="metric" style="box-shadow: 0 0 3px;">
 											<span class="icon"><i class="fab fa-product-hunt"
 												style="font-size: 26px; margin-top: 12px;"></i></span>
 											<p>
-												<span class="number">203,764</span> <span class="title">Product</span>
+												<span class="number">${orderCount}</span> <span class="title">Lượt yêu cầu</span>
 											</p>
 										</div>
 									</a>
@@ -83,7 +83,7 @@
 											<span class="icon"><i
 												style='font-size: 24px; margin-top: 2px;' class='fas'>&#xf0c0;</i></span>
 											<p>
-												<span class="number">505</span><span class="title">User</span>
+												<span class="number">${customerCount}</span><span class="title">Số khách hàng</span>
 											</p>
 										</div>
 									</a>
@@ -92,7 +92,7 @@
 									<div class="metric" style="box-shadow: 0 0 3px;">
 										<span class="icon"><i class="fa fa-bar-chart"></i></span>
 										<p>
-											<span class="number">35%</span> <span class="title">Restore</span>
+											<span class="number">${landingPageCount}</span> <span class="title">Số landing page</span>
 										</p>
 									</div>
 								</div>
@@ -101,7 +101,7 @@
 								<div class="col-md-9">
 									<div class="panel">
 										<div class="panel-heading">
-											<h3 class="panel-title">Recent Purchases</h3>
+											<h3 class="panel-title">Yêu cầu gần đây</h3>
 											<div class="right">
 												<button type="button" class="btn-toggle-collapse">
 													<i class="lnr lnr-chevron-up"></i>
@@ -115,34 +115,35 @@
 											<table class="table table-striped">
 												<thead>
 													<tr>
-														<th>Order No.</th>
-														<th>Name</th>
-														<th>Amount</th>
-														<th>Date &amp; Time</th>
-														<th>Status</th>
-														<th>Details</th>
+														<th>Mã yêu cầu</th>
+														<th>Landingpage</th>
+														<th>Trạng thái</th>
+														<th>Người phụ trách</th>
+														<th>Email khách hàng</th>
 													</tr>
 												</thead>
-												<tbody>
-<%-- 													<c:forEach items="${orders}" var="order"> --%>
-<!-- 														<tr> -->
-<%-- 															<td><a href="#">No. ${order.orderId}</a></td> --%>
-<%-- 															<td>${order.userDTO.email.split("@")[0]}</td> --%>
-<!-- 															<td>$${order.priceTotal}0</td> -->
-<%-- 															<td>${order.buyDate}</td> --%>
-<%-- 															<c:if test="${order.status eq 'PENDING'}"> --%>
-<!-- 																<td><a -->
-<%-- 																	href="order-updateHome?orderId=${order.orderId}"><span --%>
-<!-- 																		class="label label-warning">PENDING</span></a></td> -->
-<%-- 															</c:if> --%>
-<%-- 															<c:if test="${order.status eq 'SUCCESS'}"> --%>
-<!-- 																<td><span class="label label-success">SUCCESS</span></td> -->
-<%-- 															</c:if> --%>
-<%-- 															<td><a href="order-details?orderId=${order.orderId}" --%>
-<!-- 																style="text-decoration: underline;">Details</a></td> -->
-<!-- 														</tr> -->
-<%-- 													</c:forEach> --%>
-												</tbody>
+													<tbody>
+															<c:forEach items="${recentOrders}" varStatus="loop"
+																var="order">
+																<tr>
+																	<td style="vertical-align: middle;">${order.id}</td>
+																	<td style="vertical-align: middle;">
+																	<a target="_blank" href="${order.landingPage.domain}">
+																	<img
+																		style="width: 75px" src="${order.landingPage.thumbnailUrl}">
+																	</a>
+																	</td>
+																	<td style="vertical-align: middle;">${order.status}</td>
+																	<td style="vertical-align: middle;">${order.employee.email}</td>
+																	<td style="vertical-align: middle;">
+																			${order.customer.email}
+<%-- 																		<c:forEach items="${order.customers}" varStatus="loop" var="customer"> --%>
+<%-- 																			<span>${customer.email}</span><br> --%>
+<%-- 																		</c:forEach> --%>
+																	</td>
+																</tr>
+															</c:forEach>
+														</tbody>
 											</table>
 										</div>
 										<div class="panel-footer">
@@ -152,8 +153,9 @@
 														Last 24 hours</span>
 												</div>
 												<div class="col-md-6 text-right">
-													<a href="../admin/order-list" class="btn btn-primary">View
-														All Purchases</a>
+													<a href="../admin/order-list" class="btn btn-primary">
+														Xem tất cả
+													</a>
 												</div>
 											</div>
 										</div>

@@ -31,7 +31,7 @@ public class Role extends Base {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "role_id", nullable = false, unique = true)
-	public long roleId;
+	public long id;
 
 	@Column(name = "role_name", nullable = false)
 	public String roleName;

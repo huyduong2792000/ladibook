@@ -32,7 +32,7 @@ public class UserService implements UserDetailsService {
 
 		CustomUserDetails userPrincipal = new CustomUserDetails(user.getEmail(), user.getPhone(), user.getPassword(),
 				roleList);
-		userPrincipal.setUserId(user.getUserId());
+		userPrincipal.setUserId(user.getId());
 		userPrincipal.setEmail(user.getEmail());
 		userPrincipal.setPhone(user.getPhone());
 		userPrincipal.setAddress(user.getAddress());

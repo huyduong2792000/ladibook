@@ -77,7 +77,7 @@ public class SpringConfiguration {
 		dataSource.setPassword("zaccobap2792000");
 		return dataSource;
 	}
-
+//
 //	@Bean
 //	public SpringLiquibase liquibase() {
 //		SpringLiquibase liquibase = new SpringLiquibase();

@@ -4,8 +4,10 @@ package com.huydq.ladibook.entity;
 import java.sql.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -49,7 +51,7 @@ public class Price extends Base {
 	@Column(name = "end_time")
 	private Date endTime;
 
-	@OneToMany(mappedBy = "price")
+	@OneToMany(mappedBy = "price", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<ProductPrice> productPrices;
 
 }

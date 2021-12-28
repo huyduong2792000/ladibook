@@ -1,30 +1,21 @@
 package com.huydq.ladibook.entity;
 
-import java.io.Serializable;
+import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-@Embeddable
-class OrderCustomerKey implements Serializable {
-
-	@Column(name = "order_id")
-	Long orderId;
-
-	@Column(name = "customer_id")
-	Long customerId;
-
-}
 
 @Data
 @NoArgsConstructor
@@ -33,10 +24,12 @@ class OrderCustomerKey implements Serializable {
 @Table(name = "order_customer")
 public class OrderCustomer extends Base {
 
-	@EmbeddedId
-	OrderCustomerKey id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "compute_order_id_customer_id", nullable = false, unique = true)
+	private long id;
 
-	@Column(name = "email", unique = true, nullable = false)
+	@Column(name = "email", nullable = false)
 	private String email;
 
 	@Column(name = "full_name")
@@ -54,13 +47,28 @@ public class OrderCustomer extends Base {
 	@Column(name = "avatar")
 	private String avatar;
 
-	@ManyToOne
-	@MapsId("orderId")
+	@Column(name = "description")
+	private String description;
+
+	@Column(name = "buy_date")
+	private Date buyDate;
+
+	@Column(name = "status")
+	private String status = "create"; // create, processing, done
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "landingpage_id")
+	private LandingPage landingPage;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id", nullable = false)
+	private User employee;
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "order_id", nullable = false)
 	Order order;
 
-	@ManyToOne
-	@MapsId("customerId")
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "customer_id", nullable = false)
 	Customer customer;
 }

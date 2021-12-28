@@ -6,4 +6,469 @@
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd 
    http://www.liquibase.org/xml/ns/dbchangelog 
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+ 
+    <changeSet author="huyduong (generated)" id="1640718201689-1">
+        <createTable tableName="category">
+            <column autoIncrement="true" name="category_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="created_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="datetime"/>
+            <column name="category_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-2">
+        <createTable tableName="customer">
+            <column autoIncrement="true" name="customer_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="created_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="datetime"/>
+            <column name="address" type="VARCHAR(255)"/>
+            <column name="avatar" type="VARCHAR(255)"/>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="full_name" type="VARCHAR(255)"/>
+            <column name="gender" type="VARCHAR(255)"/>
+            <column name="lastBuyDate" type="date"/>
+            <column name="phone" type="VARCHAR(255)">
+                <constraints unique="true"/>
+            </column>
+            <column name="referralBy_customer_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-3">
+        <createTable tableName="form">
+            <column autoIncrement="true" name="form_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="created_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="datetime"/>
+            <column name="form_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="form_type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT"/>
+            <column name="product_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-4">
+        <createTable tableName="landingpage">
+            <column autoIncrement="true" name="landingpage_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="created_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="datetime"/>
+            <column name="end_time" type="date"/>
+            <column name="source_url" type="VARCHAR(255)"/>
+            <column name="start_time" type="date"/>
+            <column name="status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="thumbnail_url" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="view_count" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT"/>
+            <column name="domain" type="VARCHAR(255)"/>
+            <column name="ladingpage_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="template_no" type="VARCHAR(255)"/>
+            <column name="price" type="FLOAT(12)"/>
+            <column name="price_label" type="VARCHAR(255)"/>
+            <column name="order_count" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_percent" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-5">
+        <createTable tableName="landingpage_form">
+            <column name="landingpage_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="form_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-6">
+        <createTable tableName="order_customer">
+            <column autoIncrement="true" name="compute_order_id_customer_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="created_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="datetime"/>
+            <column name="address" type="VARCHAR(255)"/>
+            <column name="avatar" type="VARCHAR(255)"/>
+            <column name="buy_date" type="datetime"/>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="full_name" type="VARCHAR(255)"/>
+            <column name="gender" type="VARCHAR(255)"/>
+            <column name="phone" type="VARCHAR(255)">
+                <constraints unique="true"/>
+            </column>
+            <column name="status" type="VARCHAR(255)"/>
+            <column name="customer_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="landingpage_id" type="BIGINT"/>
+            <column name="order_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-7">
+        <createTable tableName="order_product">
+            <column name="order_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="product_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="created_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="datetime"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="image" type="VARCHAR(255)"/>
+            <column name="price" type="FLOAT(12)"/>
+            <column name="price_unit" type="VARCHAR(255)"/>
+            <column name="product_name" type="VARCHAR(255)"/>
+            <column name="quantity" type="FLOAT(12)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-8">
+        <createTable tableName="orders">
+            <column autoIncrement="true" name="order_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="created_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="datetime"/>
+            <column name="buy_date" type="datetime"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="is_paid" type="BIT(1)"/>
+            <column name="price_total" type="FLOAT(12)"/>
+            <column name="quantily" type="FLOAT(12)"/>
+            <column name="status" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-9">
+        <createTable tableName="permission">
+            <column autoIncrement="true" name="permission_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="permission_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="permission_no" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-10">
+        <createTable tableName="price">
+            <column autoIncrement="true" name="price_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="created_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="datetime"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="end_time" type="date"/>
+            <column name="image" type="VARCHAR(255)"/>
+            <column name="is_default" type="BIT(1)"/>
+            <column name="price_name" type="VARCHAR(255)"/>
+            <column name="price_unit" type="VARCHAR(255)"/>
+            <column name="start_time" type="date"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-11">
+        <createTable tableName="product">
+            <column autoIncrement="true" name="product_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="created_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="datetime"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="image" type="VARCHAR(255)"/>
+            <column name="product_name" type="VARCHAR(255)"/>
+            <column name="quantity" type="FLOAT(12)"/>
+            <column name="category_id" type="BIGINT"/>
+            <column name="product_type_id" type="BIGINT"/>
+            <column name="price" type="VARCHAR(255)"/>
+            <column name="price_label" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-12">
+        <createTable tableName="product_price">
+            <column name="price_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="product_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="price_name" type="FLOAT(12)"/>
+            <column name="price_percent" type="FLOAT(12)"/>
+            <column name="price_value" type="FLOAT(12)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-13">
+        <createTable tableName="product_type">
+            <column autoIncrement="true" name="product_type_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="created_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="datetime"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="is_default" type="BIT(1)"/>
+            <column name="product_type_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_type_no" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-14">
+        <createTable tableName="role">
+            <column autoIncrement="true" name="role_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="created_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="datetime"/>
+            <column name="role_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-15">
+        <createTable tableName="role_permission">
+            <column name="role_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="permission_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-16">
+        <createTable tableName="template">
+            <column autoIncrement="true" name="template_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="created_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="datetime"/>
+            <column name="template_name" type="VARCHAR(255)"/>
+            <column name="template_no" type="VARCHAR(255)"/>
+            <column name="template_type" type="VARCHAR(255)"/>
+            <column name="thumbnail" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-17">
+        <createTable tableName="user">
+            <column autoIncrement="true" name="user_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="created_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="datetime"/>
+            <column name="address" type="VARCHAR(255)"/>
+            <column name="avatar" type="VARCHAR(255)"/>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="full_name" type="VARCHAR(255)"/>
+            <column name="gender" type="VARCHAR(255)"/>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" type="VARCHAR(255)">
+                <constraints unique="true"/>
+            </column>
+            <column name="verify" type="BIT(1)"/>
+            <column name="role_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-18">
+        <addUniqueConstraint columnNames="email, phone" constraintName="unique_email_phone" tableName="customer"/>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-19">
+        <createIndex indexName="FK1mtsbur82frn64de7balymq9s" tableName="product">
+            <column name="category_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-20">
+        <createIndex indexName="FK6oueo8ot6blmn11d2o7iy5r26" tableName="customer">
+            <column name="referralBy_customer_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-21">
+        <createIndex indexName="FK84f7snqsmpxkio19syyucq50f" tableName="order_product">
+            <column name="product_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-22">
+        <createIndex indexName="FK91pv59d8l299i1k9l8g6cuucf" tableName="order_customer">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-23">
+        <createIndex indexName="FKbofii768dfk4yi1whkjlnwwo0" tableName="product_price">
+            <column name="product_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-24">
+        <createIndex indexName="FKf8yllw1ecvwqy3ehyxawqa1qp" tableName="role_permission">
+            <column name="permission_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-25">
+        <createIndex indexName="FKfej30qarbvtn8rx1fc7mxhb1j" tableName="order_customer">
+            <column name="landingpage_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-26">
+        <createIndex indexName="FKfulgbnls1b8ctxxxx5pk8hqkj" tableName="landingpage_form">
+            <column name="form_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-27">
+        <createIndex indexName="FKlabq3c2e90ybbxk58rc48byqo" tableName="product">
+            <column name="product_type_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-28">
+        <createIndex indexName="FKn82ha3ccdebhokx3a8fgdqeyy" tableName="user">
+            <column name="role_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-29">
+        <createIndex indexName="FKra045cb1tk8ccp4g6t03pff8w" tableName="order_customer">
+            <column name="order_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-30">
+        <createIndex indexName="FKt9ws53lpvx6c4h3gp3k03duq3" tableName="order_customer">
+            <column name="customer_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-31">
+        <createIndex indexName="form_type_index" tableName="form">
+            <column name="form_type"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-32">
+        <createIndex indexName="product_id_index" tableName="form">
+            <column name="product_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-33">
+        <createIndex indexName="status_index" tableName="landingpage">
+            <column name="status"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-34">
+        <createIndex indexName="user_id_index" tableName="form">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-35">
+        <createIndex indexName="user_id_index" tableName="landingpage">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-36">
+        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="product" constraintName="FK1mtsbur82frn64de7balymq9s" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="category_id" referencedTableName="category" validate="true"/>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-37">
+        <addForeignKeyConstraint baseColumnNames="referralBy_customer_id" baseTableName="customer" constraintName="FK6oueo8ot6blmn11d2o7iy5r26" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="customer_id" referencedTableName="customer" validate="true"/>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-38">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="order_product" constraintName="FK84f7snqsmpxkio19syyucq50f" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="price_id" referencedTableName="price" validate="true"/>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-39">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="order_customer" constraintName="FK91pv59d8l299i1k9l8g6cuucf" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="user_id" referencedTableName="user" validate="true"/>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-40">
+        <addForeignKeyConstraint baseColumnNames="landingpage_id" baseTableName="landingpage_form" constraintName="FK9vixa8cs0y0pen5cwgyhycbi9" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="landingpage_id" referencedTableName="landingpage" validate="true"/>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-41">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="role_permission" constraintName="FKa6jx8n8xkesmjmv6jqug6bg68" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="role_id" referencedTableName="role" validate="true"/>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-42">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="product_price" constraintName="FKbofii768dfk4yi1whkjlnwwo0" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="price_id" referencedTableName="price" validate="true"/>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-43">
+        <addForeignKeyConstraint baseColumnNames="permission_id" baseTableName="role_permission" constraintName="FKf8yllw1ecvwqy3ehyxawqa1qp" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="permission_id" referencedTableName="permission" validate="true"/>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-44">
+        <addForeignKeyConstraint baseColumnNames="landingpage_id" baseTableName="order_customer" constraintName="FKfej30qarbvtn8rx1fc7mxhb1j" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="landingpage_id" referencedTableName="landingpage" validate="true"/>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-45">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="landingpage" constraintName="FKfqmltgqfvrr8645xfg6t8rk4v" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="user_id" referencedTableName="user" validate="true"/>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-46">
+        <addForeignKeyConstraint baseColumnNames="form_id" baseTableName="landingpage_form" constraintName="FKfulgbnls1b8ctxxxx5pk8hqkj" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="form_id" referencedTableName="form" validate="true"/>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-47">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="form" constraintName="FKk9wrmq3521ba16gbp87ytf4ij" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="product_id" referencedTableName="product" validate="true"/>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-48">
+        <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="order_product" constraintName="FKl5mnj9n0di7k1v90yxnthkc73" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="order_id" referencedTableName="orders" validate="true"/>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-49">
+        <addForeignKeyConstraint baseColumnNames="product_type_id" baseTableName="product" constraintName="FKlabq3c2e90ybbxk58rc48byqo" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="product_type_id" referencedTableName="product_type" validate="true"/>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-50">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="user" constraintName="FKn82ha3ccdebhokx3a8fgdqeyy" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="role_id" referencedTableName="role" validate="true"/>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-51">
+        <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="order_customer" constraintName="FKra045cb1tk8ccp4g6t03pff8w" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="order_id" referencedTableName="orders" validate="true"/>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-52">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="form" constraintName="FKsniuo4i0n35d0lw0pjlc2iqwe" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="user_id" referencedTableName="user" validate="true"/>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-53">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="order_customer" constraintName="FKt9ws53lpvx6c4h3gp3k03duq3" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="customer_id" referencedTableName="customer" validate="true"/>
+    </changeSet>
+    <changeSet author="huyduong (generated)" id="1640718201689-54">
+        <addForeignKeyConstraint baseColumnNames="price_id" baseTableName="product_price" constraintName="FKxfgbtbbrfa24m2881bw2k0rv" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="price_id" referencedTableName="price" validate="true"/>
+    </changeSet>
 </databaseChangeLog>

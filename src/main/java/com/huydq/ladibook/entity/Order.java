@@ -1,16 +1,15 @@
 package com.huydq.ladibook.entity;
 
 
-import java.sql.Date;
-import java.util.List;
+import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,31 +21,47 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "order")
+@Table(name = "orders")
 public class Order extends Base {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "order_id", nullable = false, unique = true)
-	private long orderId;
+	private long id;
 
 	@Column(name = "buy_date")
 	private Date buyDate;
 
 	@Column(name = "status")
-	private String status;
+	private String status = "CREATED"; // CREATED, PROCESSING, DONE
+
+	@Column(name = "is_paid")
+	private boolean isPaid = false; // Đã thanh toán hay chưa
+
+	@Column(name = "description")
+	private String description;
 
 	@Column(name = "price_total")
-	private float priceTotal;
+	private float priceTotal = 0;
 
-	@ManyToOne
-	@JoinColumn(name = "user_id", nullable = false)
-	private User employee;
+	@Column(name = "quantily")
+	private float quantily = 0;
 
-	@OneToMany(mappedBy = "order")
-	private List<OrderProduct> products;
+//	@ManyToOne(fetch = FetchType.EAGER)
+//	@JoinColumn(name = "user_id", nullable = false)
+//	private User employee;
+//
+//	@ManyToOne(fetch = FetchType.EAGER)
+//	@JoinColumn(name = "landingpage_id")
+//	private LandingPage landingPage;
 
-	@OneToMany(mappedBy = "order")
-	private List<OrderCustomer> customers;
+//	@OneToMany(mappedBy = "order")
+//	private List<OrderProduct> products;
 
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+	private Set<OrderCustomer> customers;
+//
+//	public void addOrderCustomer(OrderCustomer orderCustomer) {
+//		this.customers.add(orderCustomer);
+//	}
 }

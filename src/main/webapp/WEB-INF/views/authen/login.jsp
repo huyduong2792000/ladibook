@@ -100,7 +100,7 @@
 
 
     <!-- Header -->
-    <header id="header" class="ex-2-header">
+    <header id="header" class="ex-2-header bg-primary">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -115,7 +115,7 @@
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control-input" id="lpassword" name="password" required>
+                                <input type="password" class="form-control-input" id="lpassword" name="password" required>
                                 <label class="label-control" for="lpassword">Password</label>
                                 <div class="help-block with-errors"></div>
                             </div>
@@ -130,7 +130,7 @@
 								</div>
 							</div>
                             <div class="form-group">
-                                <button type="submit" class="form-control-submit-button">LOG IN</button>
+                                <button type="submit" class="form-control-submit-button btn-primary">LOG IN</button>
                             </div>
                             <div class="form-message">
                                 <div id="lmsgSubmit" class="h3 text-center hidden"></div>

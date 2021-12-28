@@ -1,18 +1,13 @@
 package com.huydq.ladibook.entity;
 
 import java.sql.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -29,7 +24,7 @@ public class Customer extends Base {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "customer_id", nullable = false, unique = true)
-	private long customerId;
+	private long id;
 
 	@Column(name = "email", unique = true, nullable = false)
 	private String email;
@@ -52,9 +47,12 @@ public class Customer extends Base {
 	@Column(name = "lastBuyDate")
 	private Date lastBuyDate;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Customer referralBy;
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	private Customer referralBy;
+//
+//	@OneToMany(mappedBy = "referralBy", fetch = FetchType.LAZY)
+//	private Set<Customer> referrals = new HashSet<>();
 
-	@OneToMany(mappedBy = "referralBy")
-	private Set<Customer> referrals = new HashSet<>();
+//	@OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+//	private Set<OrderCustomer> orders = new HashSet<>();
 }

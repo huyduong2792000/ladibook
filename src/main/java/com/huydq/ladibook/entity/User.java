@@ -27,7 +27,7 @@ public class User extends Base {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id", nullable = false, unique = true)
-	private long userId;
+	private long id;
 
 	@Column(name = "email", unique = true, nullable = false)
 	private String email;

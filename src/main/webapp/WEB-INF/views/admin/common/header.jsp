@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Dashboard | Klorofil - Free Bootstrap Dashboard Template</title>
+<title>Dashboard | LadiBook</title>
 <meta charset="utf-8">
 </head>
 
@@ -13,8 +13,8 @@
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
-				<img src="../resource/admin/assets/img/logo-dark.png"
-					alt="Klorofil Logo" class="img-responsive logo">
+				<img src="/ladibook/resource/admin/assets/img/ladibook_logo_horizon.png"
+					alt="Klorofil Logo" class="img-responsive logo" style="height: 25px;">
 			</div>
 			<div class="container-fluid">
 				<div id="navbar-menu">
@@ -31,7 +31,7 @@
 								style="font-size: 18px;"></i><span> Home</span>
 						</a></li>
 						<li><a href="#"> <img
-								src="../download?image=${sessionScope.user.avatar}"
+								src="/ladibook/resource/admin/assets/img/avatar.svg.png"
 								class="img-circle" alt="Avatar"> <span>${sessionScope.username}</span>
 						</a></li>
 						<li><a href="../logout"> <i class="material-icons"

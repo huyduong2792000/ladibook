@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,17 +13,21 @@
 			<div class="sidebar-scroll" style="padding-top: 20px;">
 				<nav>
 					<ul class="nav">
-						<li><a href="home" class=""><i class="lnr lnr-home"></i>
-								<span>Home</span></a></li>
-						<li><a href="user-list" class=""><i class="lnr lnr-users"></i>
-								<span>User</span></a></li>
-						<li><a href="product-list" class=""><i
-								class="lnr lnr-gift"></i> <span>Product</span></a></li>
-						<li><a href="" class=""><i class="lnr lnr lnr-dice"></i>
-								<span>Order</span></a></li>
-						<li><a href="" class=""><i class="lnr lnr-store"></i> <span>Go
-									to shop</span></a></li>
-						<li><a href="" class=""><i class="lnr lnr-cog"></i> <span>Setting</span></a></li>
+						<li><a href="/ladibook/admin/home" class=""><i class="lnr lnr-home"></i>
+								<span>Trang chủ</span></a></li>
+						<li><a href="/ladibook/admin/landingpage/list" class=""><i
+								class="lnr lnr-gift"></i> <span>Landing Pages</span></a></li>
+						<li><a href="/ladibook/admin/template/list" class=""><i
+								class="lnr lnr-gift"></i> <span>Giao diện mẫu</span></a></li>
+<!-- 						<li><a href="/ladibook/admin/product/list" class=""><i -->
+<!-- 								class="lnr lnr-gift"></i> <span>Product</span></a></li> -->
+						<li><a href="/ladibook/admin/order/list" class=""><i class="lnr lnr lnr-dice"></i>
+								<span>Yêu cầu khách hàng</span></a></li>
+						<li><a href="/ladibook/admin/customer/list" class=""><i class="lnr lnr lnr-dice"></i>
+								<span>Khách hàng</span></a></li>
+						<li><a href="/ladibook/admin/user/list" class=""><i class="lnr lnr-users"></i>
+								<span>Nhân viên</span></a></li>
+						<li><a href="" class=""><i class="lnr lnr-cog"></i> <span>Cài đặt</span></a></li>
 					</ul>
 				</nav>
 			</div>

@@ -5,7 +5,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -78,6 +80,42 @@ public class UserController extends BaseController<User, Long> {
 		userInfo.setAddress(address);
 		userInfo.setGender(gender);
 		userInfo.setRole(roleInfo);
+		userRepository.save(userInfo);
+		return "redirect:../user/list";
+	}
+	
+	@Override
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	public @ResponseBody ModelAndView get(HttpServletRequest request, Model model) {
+		ModelAndView mav = new ModelAndView("admin/user/create");
+		User result = new User();
+		List<Role> roles = roleRepository.findAll();
+		mav.addObject("result", result);
+		mav.addObject("roles", roles);
+		return mav;
+	}
+
+	@Override
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public String CreateSingle(HttpServletRequest request, @ModelAttribute("result") User bodyData) {
+		System.out.println(bodyData);
+		String email = request.getParameter("email");
+		String fullname = request.getParameter("fullname");
+		String phone = request.getParameter("phone");
+		String address = request.getParameter("address");
+		String gender = request.getParameter("gender");
+		String roleId = request.getParameter("roleId");
+		String password = request.getParameter("password");
+		Role roleInfo = roleRepository.findOneById(Long.parseLong(roleId));
+		User userInfo = new User();
+
+		userInfo.setEmail(email);
+		userInfo.setFullname(fullname);
+		userInfo.setPhone(phone);
+		userInfo.setAddress(address);
+		userInfo.setGender(gender);
+		userInfo.setRole(roleInfo);
+		userInfo.setPassword(new BCryptPasswordEncoder().encode(password));
 		userRepository.save(userInfo);
 		return "redirect:../user/list";
 	}

@@ -27,7 +27,7 @@
 								<span>Khách hàng</span></a></li>
 						<li><a href="/ladibook/admin/user/list" class=""><i class="lnr lnr-users"></i>
 								<span>Nhân viên</span></a></li>
-						<li><a href="" class=""><i class="lnr lnr-cog"></i> <span>Cài đặt</span></a></li>
+						<li><a href="" class=""><i class="lnr lnr-cog"></i> <span>Phân quyền</span></a></li>
 					</ul>
 				</nav>
 			</div>

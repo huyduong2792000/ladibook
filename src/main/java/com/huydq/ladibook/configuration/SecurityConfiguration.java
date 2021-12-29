@@ -32,7 +32,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().cors().disable().authorizeRequests().antMatchers("/admin/**").hasAnyAuthority("admin")
+		http.csrf().disable().cors().disable().authorizeRequests().antMatchers("/admin/**")
+				.hasAnyAuthority("admin", "employee")
 				.anyRequest().permitAll().and().exceptionHandling().accessDeniedPage("/logout");
 
 		http.formLogin().loginPage("/logout").loginProcessingUrl("/login").usernameParameter("email")

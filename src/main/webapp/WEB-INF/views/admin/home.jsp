@@ -42,7 +42,7 @@
 	<div id="wrapper">
 
 		<jsp:include page="common/header.jsp"></jsp:include>
-		<%@include file="common/category.jsp"%>
+		<jsp:include page="common/category.jsp" ></jsp:include>
 
 
 		<!-- MAIN -->
@@ -153,7 +153,7 @@
 														Last 24 hours</span>
 												</div>
 												<div class="col-md-6 text-right">
-													<a href="../admin/order-list" class="btn btn-primary">
+													<a href="../admin/order/list" class="btn btn-primary">
 														Xem tất cả
 													</a>
 												</div>

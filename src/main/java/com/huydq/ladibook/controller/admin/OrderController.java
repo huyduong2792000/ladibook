@@ -1,6 +1,8 @@
 package com.huydq.ladibook.controller.admin;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,15 +11,18 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.huydq.ladibook.entity.Customer;
 import com.huydq.ladibook.entity.OrderCustomer;
 import com.huydq.ladibook.entity.User;
 import com.huydq.ladibook.repositories.CustomerRepository;
@@ -132,5 +137,44 @@ public class OrderController extends BaseController<OrderCustomer, Long> {
 		orderCustomer.setStatus(status);
 		repository.save(orderCustomer);
 		return "redirect:../order/list";
+	}
+
+	@RequestMapping(value = "/send-mail", method = RequestMethod.GET)
+	public @ResponseBody ModelAndView getSendMail(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("admin/order/send-mail");
+		String[] customerIds = request.getParameterValues("customerId");
+		String customerId = "";
+		for (String id : customerIds) {
+			customerId = id + ";";
+		}
+		mav.addObject("customerId", customerId);
+		return mav;
+	}
+
+	@RequestMapping(value = "/send-mail", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> postSendMail(HttpServletRequest request,
+			@RequestBody Map<String, String> body) {
+		Map<String, Object> res = new HashMap<>();
+		String customerIds = body.get("customerId");
+		String title = body.get("title");
+		String content = body.get("content");
+		System.out.println(customerIds);
+		System.out.println(content);
+		for (String customerId : customerIds.split(";")) {
+			Customer customerInfo = customerRepository.findOneById(Long.parseLong(customerId));
+			sendEmail("duongquanghuy2792000@gmail.com", customerInfo.getEmail(), title, content);
+		}
+		res.put("success", true);
+		return res;
+	}
+
+	public void sendEmail(String from, String to, String subject, String content) {
+		SimpleMailMessage mailMessage = new SimpleMailMessage();
+		mailMessage.setFrom(from);
+		mailMessage.setTo(to);
+		mailMessage.setSubject(subject);
+		mailMessage.setText(content);
+
+		mailSender.send(mailMessage);
 	}
 }

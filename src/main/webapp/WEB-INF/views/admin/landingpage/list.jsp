@@ -187,6 +187,7 @@
 																		  </div>
 																		  <div id="myDropdown-${landingpage.id}" class="dropdown-content">
 																		    <a href="/ladibook/admin/order/list?landingpageId=${landingpage.id}">Xem các yêu cầu</a>
+																		    <a target="_blank" href="/ladibook/admin/landingpage/editor/03/${landingpage.id}">Chỉnh sửa</a>
 																		    <a href="">Đặt domain</a>
 																		  </div>
 																		</div>

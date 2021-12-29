@@ -44,19 +44,19 @@
 		<jsp:include page="../common/category.jsp" />
 		<!-- MAIN -->
 		<!-- MAIN CONTENT -->
-		<form action="delete-many" method="GET">
+		<form action="send-mail" method="GET">
 			<div class="main">
 				<div class="main-content">
 					<div class="container-fluid">
 						<!-- OVERVIEW -->
 						<div class="panel panel-headline">
 							<div class="panel-body">
-								<form action="delete-many" method="GET">
+								<form action="send-mail" method="GET">
 									<div class="row">
 										<div class="col-md-12">
 											<div class="panel">
 												<div class="panel-heading">
-													<h3 class="panel-title">Danh sách đơn hàng</h3>
+													<h3 class="panel-title">Danh sách yêu cầu</h3>
 													<p class="demo-button">
 														<a class="btn btn-success" href="list"
 															style="background-color: #d9534f; padding: 4px 8px; text-decoration: none; border: none; margin-left: 7px">
@@ -76,11 +76,11 @@
 													</p>
 													<div class="right">
 														<button type="submit">
-															<span class="label label-danger"
-																style="font-size: 15px; margin-right: 15px;">Delete</span>
+															<span class="label label-success"
+																style="font-size: 15px; margin-right: 15px;">Gửi mail</span>
 														</button>
-														<a href="mail-editor"><span class="label label-success"
-															style="font-size: 15px;">Gửi mail</span></a>
+<!-- 														<a href="mail-editor"><span class="label label-success" -->
+<!-- 															style="font-size: 15px;">Gửi mail</span></a> -->
 													</div>
 												</div>
 												<div class="panel-body no-padding">
@@ -102,8 +102,8 @@
 																var="order">
 																<tr>
 																	<td style="vertical-align: middle;"><input
-																		class="checkbox" type="checkbox" name="id"
-																		value="${order.id}" id="${loop.count}"
+																		class="checkbox" type="checkbox" name="customerId"
+																		value="${order.customer.id}" id="${loop.count}"
 																		style="cursor: pointer;" /></td>
 																	<td style="vertical-align: middle;">${order.id}</td>
 																	<td style="vertical-align: middle;">

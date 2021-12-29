@@ -9,6 +9,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.mail.MailSender;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,6 +66,9 @@ public class HomeAdminController {
 		Pageable pageQuery = PageRequest.of((int) 0, (int) 5, sort);
 		List<OrderCustomer> recentOrders = orderCustomerRepository.findAll(pageQuery).getContent();
 		mav.addObject("recentOrders", recentOrders);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		System.out.println(auth.getAuthorities());
+		mav.addObject("role", auth.getAuthorities().stream().findFirst());
 		return mav;
 	}
 	

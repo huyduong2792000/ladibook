@@ -71,4 +71,8 @@ public class OrderCustomer extends Base {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "customer_id", nullable = false)
 	Customer customer;
+
+	public Date getCreateAt() {
+		return this.createdAt;
+	}
 }

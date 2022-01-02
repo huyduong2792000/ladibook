@@ -1,15 +1,20 @@
 package com.huydq.ladibook.controller.admin;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,13 +24,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.huydq.ladibook.entity.Permission;
+import com.huydq.ladibook.repositories.RoleRepository;
+
 public abstract class BaseController<T, ID> {
 
 	private Logger logger = LoggerFactory.getLogger(BaseController.class);
 
+	@Autowired
+	private RoleRepository roleRepository;
+
 	private String viewFolder;
 
 	private String apiName;
+
+	private String[] listViewPermission;
+
+	public String[] getListViewPermission() {
+		return listViewPermission;
+	}
+
+	public void setListViewPermission(String[] listViewPermission) {
+		this.listViewPermission = listViewPermission;
+	}
 
 	public String getApiName() {
 		return apiName;
@@ -56,6 +77,25 @@ public abstract class BaseController<T, ID> {
 	public ModelAndView customGetAll(HttpServletRequest request, long pageIndex, long pageSize, String sortBy) {
 		return null;
 	}
+
+	public boolean checkPermission(String[] permissions) {
+		if (permissions == null) {
+			return true;
+		}
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		for (String permission : permissions) {
+			for (GrantedAuthority roleName : auth.getAuthorities()) {
+				Set<Permission> rolePermissions = roleRepository
+						.findOneByRoleName(roleName.getAuthority()).getPermissions();
+				for (Permission rolePermission : rolePermissions) {
+					if (rolePermission.getPermissionNo().equals(permission)) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
 //	public String customPost(T bodyData) {
 //		return null;
 //	}
@@ -71,6 +111,10 @@ public abstract class BaseController<T, ID> {
 			@RequestParam(name = "pageSize", required = false, defaultValue = "10") long pageSize,
 			@RequestParam(name = "sortBy", required = false, defaultValue = "id:ASC") String sortBy) {
 
+		if (!checkPermission(listViewPermission)) {
+			ModelAndView mav = new ModelAndView("admin/common/access_denied");
+			return mav;
+		}
 		ModelAndView mav = new ModelAndView(this.viewFolder + "/list");
 		long totalPage = 0;
 

@@ -46,12 +46,17 @@ public class UserController extends BaseController<User, Long> {
 		super(repository);
 		super.setViewFolder("admin/user");
 		super.setApiName("user");
+		super.setListViewPermission(new String[] { "all_employee" });
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public @ResponseBody ModelAndView getSingle(HttpServletRequest request, @PathVariable Long id) {
+		if (!checkPermission(new String[] { "all_employee" })) {
+			ModelAndView mav = new ModelAndView("admin/common/access_denied");
+			return mav;
+		}
 		ModelAndView mav = new ModelAndView("admin/user/update");
 		User result = userRepository.findById(id).get();
 		List<Role> roles = roleRepository.findAll();
@@ -87,6 +92,10 @@ public class UserController extends BaseController<User, Long> {
 	@Override
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public @ResponseBody ModelAndView get(HttpServletRequest request, Model model) {
+		if (!checkPermission(new String[] { "all_employee" })) {
+			ModelAndView mav = new ModelAndView("admin/common/access_denied");
+			return mav;
+		}
 		ModelAndView mav = new ModelAndView("admin/user/create");
 		User result = new User();
 		List<Role> roles = roleRepository.findAll();

@@ -11,5 +11,7 @@ import com.huydq.ladibook.entity.Permission;
 @Transactional
 public interface PermissionRepository extends JpaRepository<Permission, Long> {
 
+	Permission findOneById(Long id);
+
 	Permission findOneByPermissionNo(String permissionNo);
 }

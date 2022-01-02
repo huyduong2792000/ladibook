@@ -16,18 +16,18 @@
 						<li><a href="/ladibook/admin/home" class=""><i class="lnr lnr-home"></i>
 								<span>Trang chủ</span></a></li>
 						<li><a href="/ladibook/admin/landingpage/list" class=""><i
-								class="lnr lnr-gift"></i> <span>Landing Pages</span></a></li>
+								class="lnr lnr-book"></i> <span>Landing Pages</span></a></li>
 						<li><a href="/ladibook/admin/template/list" class=""><i
-								class="lnr lnr-gift"></i> <span>Giao diện mẫu</span></a></li>
+								class="lnr lnr-license"></i> <span>Giao diện mẫu</span></a></li>
 <!-- 						<li><a href="/ladibook/admin/product/list" class=""><i -->
 <!-- 								class="lnr lnr-gift"></i> <span>Product</span></a></li> -->
-						<li><a href="/ladibook/admin/order/list" class=""><i class="lnr lnr lnr-dice"></i>
+						<li><a href="/ladibook/admin/order/list" class=""><i class="lnr lnr-rocket"></i>
 								<span>Yêu cầu khách hàng</span></a></li>
-						<li><a href="/ladibook/admin/customer/list" class=""><i class="lnr lnr lnr-dice"></i>
+						<li><a href="/ladibook/admin/customer/list" class=""><i class="lnr lnr-phone"></i>
 								<span>Khách hàng</span></a></li>
 						<li><a href="/ladibook/admin/user/list" class=""><i class="lnr lnr-users"></i>
 								<span>Nhân viên</span></a></li>
-						<li><a href="" class=""><i class="lnr lnr-cog"></i> <span>Phân quyền</span></a></li>
+						<li><a href="/ladibook/admin/role/list" class=""><i class="lnr lnr-cog"></i> <span>Phân quyền</span></a></li>
 					</ul>
 				</nav>
 			</div>

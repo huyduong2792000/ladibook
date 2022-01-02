@@ -35,7 +35,7 @@ public class Permission {
 	@Column(name = "permission_name", nullable = false)
 	private String permissionName;
 
-	@ManyToMany(targetEntity = Role.class, mappedBy = "permissions", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(targetEntity = Role.class, mappedBy = "permissions", cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
 	Set<Role> roles;
 
 	public Set<Role> getRoles() {

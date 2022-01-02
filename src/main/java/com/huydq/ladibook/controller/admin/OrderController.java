@@ -56,6 +56,7 @@ public class OrderController extends BaseController<OrderCustomer, Long> {
 		super(repository);
 		super.setViewFolder("admin/order");
 		super.setApiName("order");
+		super.setListViewPermission(new String[] { "read_order" });
 		// TODO Auto-generated constructor stub
 	}
 
@@ -66,6 +67,10 @@ public class OrderController extends BaseController<OrderCustomer, Long> {
 			@RequestParam(name = "pageSize", required = false, defaultValue = "10") long pageSize,
 			@RequestParam(name = "sortBy", required = false, defaultValue = "id:ASC") String sortBy) {
 
+		if (!checkPermission(new String[] { "read_order" })) {
+			ModelAndView mav = new ModelAndView("admin/common/access_denied");
+			return mav;
+		}
 		ModelAndView mav = new ModelAndView("admin/order/list");
 		String status = request.getParameter("status");
 		String landingpageId = request.getParameter("landingpageId");
@@ -116,6 +121,10 @@ public class OrderController extends BaseController<OrderCustomer, Long> {
 	@Override
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public @ResponseBody ModelAndView getSingle(HttpServletRequest request, @PathVariable Long id) {
+		if (!checkPermission(new String[] { "read_order" })) {
+			ModelAndView mav = new ModelAndView("admin/common/access_denied");
+			return mav;
+		}
 		ModelAndView mav = new ModelAndView("admin/order/update");
 		OrderCustomer result = orderCustomerRepository.findById(id).get();
 		List<User> employees = userRepository.findAll();
@@ -128,6 +137,9 @@ public class OrderController extends BaseController<OrderCustomer, Long> {
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
 	public String updateSigle(HttpServletRequest request, @PathVariable Long id,
 			@ModelAttribute("result") OrderCustomer bodyData) {
+		if (!checkPermission(new String[] { "update_order" })) {
+			return "redirect:/ladibook/admin/access-denined";
+		}
 		System.out.println(bodyData);
 		String employeeId = request.getParameter("employeeId");
 		String status = request.getParameter("status");

@@ -69,6 +69,16 @@ public class HomeAdminController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		System.out.println(auth.getAuthorities());
 		mav.addObject("role", auth.getAuthorities().stream().findFirst());
+
+//		Pageable allOrderQuery = PageRequest.of((int) 0, (int) 50000, sort);
+//		List<OrderCustomer> allOrders = orderCustomerRepository.findAll(allOrderQuery).getContent();
+//		
+		return mav;
+	}
+
+	@GetMapping(value = "/access-denined")
+	public ModelAndView access_denined(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("admin/common/access_denied");
 		return mav;
 	}
 	

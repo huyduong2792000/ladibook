@@ -19,4 +19,6 @@ public interface RoleRepository extends JpaRepository<Role, Long> {
 
 	List<Role> findByRoleName(String roleName);
 
+//	@Query("SELECT u FROM Permission u WHERE u.landingPage.id = :roleId")
+//	List<OrderCustomer> findAllByLandingPageId(@Param("roleId") Long landingpageId);
 }

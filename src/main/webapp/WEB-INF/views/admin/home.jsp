@@ -98,7 +98,7 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-md-9">
+								<div class="col-md-8">
 									<div class="panel">
 										<div class="panel-heading">
 											<h3 class="panel-title">Yêu cầu gần đây</h3>
@@ -162,22 +162,25 @@
 									</div>
 								</div>
 								<div id="headline-chart" class="ct-chart"></div>
-								<div class="col-md-3">
-									<div class="weekly-summary text-right">
-										<span class="number">2,315</span> <span class="percentage"><i
-											class="fa fa-caret-up text-success"></i> 12%</span> <span
-											class="info-label">Total Sales</span>
+								<div class="col-md-4">
+									<div>
+									  <canvas id="myChart"></canvas>
 									</div>
-									<div class="weekly-summary text-right">
-										<span class="number">$5,758</span> <span class="percentage"><i
-											class="fa fa-caret-up text-success"></i> 23%</span> <span
-											class="info-label">Monthly Income</span>
-									</div>
-									<div class="weekly-summary text-right">
-										<span class="number">$65,938</span> <span class="percentage"><i
-											class="fa fa-caret-down text-danger"></i> 8%</span> <span
-											class="info-label">Total Income</span>
-									</div>
+<!-- 									<div class="weekly-summary text-right"> -->
+<!-- 										<span class="number">2,315</span> <span class="percentage"><i -->
+<!-- 											class="fa fa-caret-up text-success"></i> 12%</span> <span -->
+<!-- 											class="info-label">Total Sales</span> -->
+<!-- 									</div> -->
+<!-- 									<div class="weekly-summary text-right"> -->
+<!-- 										<span class="number">$5,758</span> <span class="percentage"><i -->
+<!-- 											class="fa fa-caret-up text-success"></i> 23%</span> <span -->
+<!-- 											class="info-label">Monthly Income</span> -->
+<!-- 									</div> -->
+<!-- 									<div class="weekly-summary text-right"> -->
+<!-- 										<span class="number">$65,938</span> <span class="percentage"><i -->
+<!-- 											class="fa fa-caret-down text-danger"></i> 8%</span> <span -->
+<!-- 											class="info-label">Total Income</span> -->
+<!-- 									</div> -->
 								</div>
 							</div>
 						</div>
@@ -193,5 +196,37 @@
 	</div>
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script>
+  const labels = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+  ];
+
+  const data = {
+    labels: labels,
+    datasets: [{
+      label: 'Số đơn hàng',
+      backgroundColor: 'rgb(255, 99, 132)',
+      borderColor: 'rgb(255, 99, 132)',
+      data: [0, 10, 5, 2, 20, 30, 45],
+    }]
+  };
+
+  const config = {
+    type: 'line',
+    data: data,
+    options: {}
+  };
+  const myChart = new Chart(
+		    document.getElementById('myChart'),
+		    config
+		  );
+</script>
+ 
 </body>
 </html>

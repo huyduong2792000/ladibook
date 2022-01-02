@@ -33,6 +33,7 @@ public class CustomerController extends BaseController<Customer, Long> {
 		super(repository);
 		super.setViewFolder("admin/customer");
 		super.setApiName("customer");
+		super.setListViewPermission(new String[] { "read_contact" });
 		// TODO Auto-generated constructor stub
 	}
 
@@ -40,6 +41,9 @@ public class CustomerController extends BaseController<Customer, Long> {
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
 	public String updateSigle(HttpServletRequest request, @PathVariable Long id,
 			@ModelAttribute("result") Customer bodyData) {
+		if (!checkPermission(new String[] { "update_contact" })) {
+			return "redirect:/ladibook/admin/access-denined";
+		}
 		System.out.println(bodyData);
 		String email = request.getParameter("email");
 		String fullname = request.getParameter("fullname");

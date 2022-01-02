@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>LadiBook | Đơn hàng</title>
+<title>LadiBook | Phân quyền</title>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport"
@@ -44,86 +44,63 @@
 		<jsp:include page="../common/category.jsp" />
 		<!-- MAIN -->
 		<!-- MAIN CONTENT -->
-		<form action="send-mail" method="GET">
+		<form action="delete-many" method="GET">
 			<div class="main">
 				<div class="main-content">
 					<div class="container-fluid">
 						<!-- OVERVIEW -->
 						<div class="panel panel-headline">
 							<div class="panel-body">
-								<form action="send-mail" method="GET">
+								<form action="delete-many" method="GET">
 									<div class="row">
 										<div class="col-md-12">
 											<div class="panel">
 												<div class="panel-heading">
-													<h3 class="panel-title">Danh sách yêu cầu</h3>
-													<p class="demo-button">
-														<a class="btn btn-success" href="list"
-															style="background-color: #d9534f; padding: 4px 8px; text-decoration: none; border: none; margin-left: 7px">
-															Tất cả</a> <a class="btn btn-success"
-															href="list?status=create"
-															style="background-color: #41B314; padding: 4px 8px; text-decoration: none; border: none; margin-left: 7px;">
-															Mới yêu cầu</a> 
-															<a class="btn btn-success"
-															href="list?status=processing"
-															style="background-color: #41B314; padding: 4px 8px; text-decoration: none; border: none; margin-left: 7px;">
-															Đang xử lý</a>
-															<a class="btn btn-info"
-															href="list?status=done"
-															style="background-color: #E4CB10; padding: 4px 8px; text-decoration: none; border: none; margin-left: 5px;">
-															Đã xong
-														</a>
-													</p>
+													<h3 class="panel-title">Danh sách các quyền</h3>
+<!-- 													<p class="demo-button"> -->
+<!-- 														<a class="btn btn-success" href="list?productType=product" -->
+<!-- 															style="background-color: #d9534f; padding: 4px 8px; text-decoration: none; border: none; margin-left: 7px"> -->
+<!-- 															Khách tiềm năng</a> <a class="btn btn-success" -->
+<!-- 															href="list?productType=promotion" -->
+<!-- 															style="background-color: #41B314; padding: 4px 8px; text-decoration: none; border: none; margin-left: 7px;"> -->
+<!-- 															Đang chăm sóc</a> <a class="btn btn-info" -->
+<!-- 															href="list?productType=service" -->
+<!-- 															style="background-color: #E4CB10; padding: 4px 8px; text-decoration: none; border: none; margin-left: 5px;"> -->
+<!-- 															Đã từng mua</a> -->
+<!-- 														</a> -->
+<!-- 													</p> -->
 													<div class="right">
 														<button type="submit">
-															<span class="label label-success"
-																style="font-size: 15px; margin-right: 15px;">Gửi mail</span>
+															<span class="label label-danger"
+																style="font-size: 15px; margin-right: 15px;">Delete</span>
 														</button>
-<!-- 														<a href="mail-editor"><span class="label label-success" -->
-<!-- 															style="font-size: 15px;">Gửi mail</span></a> -->
+														<a href="create"><span class="label label-success"
+															style="font-size: 15px;">Create</span></a>
 													</div>
 												</div>
 												<div class="panel-body no-padding">
-													<table class="table" style="margin: auto;">
+													<table class="table" style="margin: auto; text-align: center;">
 														<thead>
 															<tr>
-																<th><input type="checkbox" name="all" id="checkAll"
+																<th ><input type="checkbox" name="all" id="checkAll"
 																	style="cursor: pointer;" /></th>
-																<th>Mã yêu cầu</th>
-																<th>Landingpage</th>
-																<th>Ngày yêu cầu</th>
-																<th>Trạng thái</th>
-																<th>Người phụ trách</th>
-																<th style="width: 22%;">Email khách hàng</th>
-																<th>Edit</th>
+																<th style="margin: auto; text-align: center;">ID</th>
+																<th style="margin: auto; text-align: center;">Tên</th>
+																<th style="margin: auto; text-align: center;">Edit</th>
 															</tr>
 														</thead>
 														<tbody>
 															<c:forEach items="${results}" varStatus="loop"
-																var="order">
+																var="role">
 																<tr>
 																	<td style="vertical-align: middle;"><input
-																		class="checkbox" type="checkbox" name="customerId"
-																		value="${order.customer.id}" id="${loop.count}"
+																		class="checkbox" type="checkbox" name="id"
+																		value="${role.id}" id="${loop.count}"
 																		style="cursor: pointer;" /></td>
-																	<td style="vertical-align: middle;">${order.id}</td>
-																	<td style="vertical-align: middle;">
-																	<a target="_blank" href="${order.landingPage.domain}">
-																	<img
-																		style="width: 75px" src="${order.landingPage.thumbnailUrl}">
-																	</a>
-																	<td style="vertical-align: middle;">${order.getCreateAt()}</td>
-																	</td>
-																	<td style="vertical-align: middle;">${order.status}</td>
-																	<td style="vertical-align: middle;">${order.employee.email}</td>
-																	<td style="vertical-align: middle;">
-																			${order.customer.email}
-<%-- 																		<c:forEach items="${order.customers}" varStatus="loop" var="customer"> --%>
-<%-- 																			<span>${customer.email}</span><br> --%>
-<%-- 																		</c:forEach> --%>
-																	</td>
+																	<td style="vertical-align: middle;">${role.id}</td>
+																	<td style="vertical-align: middle;">${role.roleName}</td>
 																	<td style="vertical-align: middle;"><a
-																		href="${order.id}"> <span
+																		href="${role.id}"> <span
 																			class="label label-warning" style="font-size: 15px;">Update</span>
 																	</a></td>
 																</tr>
